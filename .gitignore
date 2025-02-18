@@ -1,6 +1,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,gradle,java,intellij+all,eclipse,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,gradle,java,intellij+all,eclipse,visualstudiocode
 
+# properties
+*.properties
+
+
+.idea/
+target/
+
 ### Eclipse ###
 .metadata
 bin/
