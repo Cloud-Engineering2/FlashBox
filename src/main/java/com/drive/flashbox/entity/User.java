@@ -1,10 +1,8 @@
-package com.drive.flash.entity;
+package com.drive.flashbox.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Entity
