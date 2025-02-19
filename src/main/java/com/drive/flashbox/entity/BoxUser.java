@@ -2,7 +2,7 @@ package com.drive.flashbox.entity;
 
 import java.time.LocalDateTime;
 
-import com.drive.flashbox.enums.RoleType;
+import com.drive.flashbox.entity.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.drive.flashbox.enums;
+package com.drive.flashbox.entity.enums;
 
 public enum RoleType {
     OWNER,
