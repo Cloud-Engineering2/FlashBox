@@ -10,15 +10,14 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "user")
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)  // 자동으로 생성일자 저장
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @Column(name = "uid", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 20)
     private String name;
@@ -26,7 +25,7 @@ public class User {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 50)
     private String password;
 
     // 사용자 입장에서의 박스 리스트 (1:N)
@@ -41,23 +40,4 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<BoxUser> boxUsers = new ArrayList<>();
 
-    @Builder
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    // 편의 메서드
-    public void addBox(Box box) {
-        this.boxes.add(box);
-    }
-
-    public void addPicture(Picture picture) {
-        this.pictures.add(picture);
-    }
-
-    public void addBoxUser(BoxUser boxUser) {
-        this.boxUsers.add(boxUser);
-    }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "box")
-public class Box {
+public class Box extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,12 @@ public class Box {
 
     @Column(name = "name", length = 50, nullable = false)
     private String name;
+    
+    @Column(name = "event_start_date", nullable = false)
+    private LocalDateTime eventStartDate;
+    
+    @Column(name = "event_end_date", nullable = false)
+    private LocalDateTime eventEndDate;
 
     @Column(name = "upload_date")
     private LocalDateTime uploadDate;
@@ -30,8 +36,8 @@ public class Box {
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
-    @Column(name = "deleted_date")
-    private LocalDateTime deletedDate;
+    @Column(name = "boom_date")
+    private LocalDateTime boomDate;
 
     // Box를 만든(혹은 소유한) User
     @ManyToOne
@@ -45,26 +51,5 @@ public class Box {
     // 박스 - 사용자 중간 테이블 매핑 (1:N)
     @OneToMany(mappedBy = "box", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<BoxUser> boxUsers = new ArrayList<>();
-
-    @Builder
-    public Box(String name,
-               LocalDateTime uploadDate,
-               LocalDateTime createdDate,
-               LocalDateTime deletedDate,
-               User user) {
-        this.name = name;
-        this.uploadDate = uploadDate;
-        this.createdDate = createdDate;
-        this.deletedDate = deletedDate;
-        this.user = user;
-    }
-
-    // 편의 메서드
-    public void addPicture(Picture picture) {
-        this.pictures.add(picture);
-    }
-
-    public void addBoxUser(BoxUser boxUser) {
-        this.boxUsers.add(boxUser);
-    }
+    
 }

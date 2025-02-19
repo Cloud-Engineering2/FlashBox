@@ -19,14 +19,14 @@ public class Picture {
     @Column(name = "pid")
     private Long pid;
 
-    @Column(name = "name", length = 100)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "upload_date")
+    @Column(name = "upload_date", nullable = false)
     private LocalDateTime uploadDate;
 
-    @Column(name = "deleted_date")
-    private LocalDateTime deletedDate;
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
 
     // 사진을 올린 사용자
     @ManyToOne
@@ -41,12 +41,12 @@ public class Picture {
     @Builder
     public Picture(String name,
                    LocalDateTime uploadDate,
-                   LocalDateTime deletedDate,
+                   String imageUrl,
                    User user,
                    Box box) {
         this.name = name;
         this.uploadDate = uploadDate;
-        this.deletedDate = deletedDate;
+        this.imageUrl = imageUrl;
         this.user = user;
         this.box = box;
     }
